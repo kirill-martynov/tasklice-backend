@@ -1,17 +1,22 @@
 import express, { Express, Request, Response } from "express";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
+
+import tasksRoutes from "./routes/tasks/tasks";
 
 dotenv.config();
 
 const app: Express = express();
+
 const port = process.env.PORT;
+const DB = process.env.DATABASE || "";
+
+mongoose.connect(DB);
+
+app.use("/tasks", tasksRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
-});
-
-app.get("/user", (req: Request, res: Response) => {
-  res.send("User route");
 });
 
 app.listen(port, () => {
