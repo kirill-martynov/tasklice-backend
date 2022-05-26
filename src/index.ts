@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import "module-alias/register";
 
 import { taskRouter } from "./routes/tasks/tasks";
 
