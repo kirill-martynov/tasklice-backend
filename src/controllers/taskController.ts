@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import { Task } from "@models/taskModel";
+import { verify } from "crypto";
 
 export const createTask = async (req: Request, res: Response) => {
   try {
@@ -45,6 +46,22 @@ export const getTask = async (req: Request, res: Response) => {
     });
   } catch (error) {
     res.status(404).json({
+      status: "fail",
+      message: error,
+    });
+  }
+};
+
+export const deleteTask = async (req: Request, res: Response) => {
+  try {
+    await Task.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({
+      status: "success",
+      data: null,
+    });
+  } catch (error) {
+    res.status(400).json({
       status: "fail",
       message: error,
     });
