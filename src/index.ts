@@ -1,9 +1,9 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import "module-alias/register";
 
-import { taskRouter } from "./routes/tasks/tasks";
+import { taskRouter } from "@routes/tasks/tasks";
 
 dotenv.config();
 
