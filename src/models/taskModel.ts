@@ -1,6 +1,16 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
-const TaskSchema = new mongoose.Schema({
+interface TaskProps extends Document {
+  name: string;
+  description: string;
+  type: string;
+  status: string;
+  priority: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const TaskSchema: Schema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "A task must have a name"],
@@ -28,4 +38,4 @@ const TaskSchema = new mongoose.Schema({
   },
 });
 
-export const Task = mongoose.model("Task", TaskSchema);
+export const Task = mongoose.model<TaskProps>("Task", TaskSchema);
