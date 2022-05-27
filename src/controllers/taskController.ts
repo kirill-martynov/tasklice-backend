@@ -52,6 +52,25 @@ export const getTask = async (req: Request, res: Response) => {
   }
 };
 
+export const updateTask = async (req: Request, res: Response) => {
+  try {
+    const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    res.status(200).json({
+      status: "success",
+      data: { task },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      message: error,
+    });
+  }
+};
+
 export const deleteTask = async (req: Request, res: Response) => {
   try {
     await Task.findByIdAndDelete(req.params.id);
