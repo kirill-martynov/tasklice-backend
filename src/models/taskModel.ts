@@ -17,7 +17,7 @@ const TaskSchema: Schema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: [true, "A task must have a name"],
+    required: [true, "A task must have a description"],
   },
   type: {
     type: String,

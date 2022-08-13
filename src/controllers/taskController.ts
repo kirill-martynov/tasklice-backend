@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
 
 import { Task } from "@models/taskModel";
-import { verify } from "crypto";
 
 export const createTask = async (req: Request, res: Response) => {
   try {
-    const task = Task.create(req.body);
+    const task = await Task.create(req.body);
 
     res.status(201).json({
       status: "success",
